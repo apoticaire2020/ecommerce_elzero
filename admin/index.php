@@ -1,7 +1,12 @@
 <?php
-      include 'init.php' ;
-      include $tpl . 'header.php';
+      session_start();
 
+      $noNavbar = '';
+     if(isset($_SESSION['Username'])){
+      header('Location:dashboard.php'); 
+     }
+      include 'init.php' ;
+     
       // check if user is coming from http  post request
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
@@ -17,7 +22,10 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     $stm->execute(array($username ,$hashPass));
     $count = $stm->rowCount();
     if($count>0){
-          echo 'success ' . 'welcome ' . $username;
+         // echo 'success ' . 'welcome ' . $username;
+         $_SESSION['Username']=$username; //register session name
+         header('Location:dashboard.php');
+         exit();
     }
     else echo 'failed';
 ?>
