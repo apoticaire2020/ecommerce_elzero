@@ -2,12 +2,15 @@
       session_start();
 
       $noNavbar = '';
+      $pageTitle = 'Login';
      if(isset($_SESSION['Username'])){
       header('Location:dashboard.php'); 
      }
       include 'init.php' ;
      
       // check if user is coming from http  post request
+      $username ='';
+      $hashPass ='';
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
      $username = $_POST['user'];
@@ -18,14 +21,27 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     
 }
     // check if user exist in database
-    $stm =$con->prepare("select Username , Password from users where Username=? and Password=? and GroupID =1 ");
+    $stm =$con->prepare("SELECT 
+                           UserID , Username , Password 
+                        from 
+                             users 
+                        where 
+                             Username=? 
+                        and 
+                              Password=? 
+                        and 
+                              GroupID =1 
+                        limit
+                               1");
     $stm->execute(array($username ,$hashPass));
+    $row = $stm->fetch();
     $count = $stm->rowCount();
     if($count>0){
          // echo 'success ' . 'welcome ' . $username;
-         $_SESSION['Username']=$username; //register session name
-         header('Location:dashboard.php');
-         exit();
+       $_SESSION['Username']=$username;
+       $_SESSION['ID']=$row['UserID'];
+       header('Location:dashboard.php');
+       exit();
     }
     else echo 'failed';
 ?>

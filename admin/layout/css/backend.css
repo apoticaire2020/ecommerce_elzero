@@ -1,13 +1,16 @@
-
 /* start rulez*/
 
-body{
+body {
     background-color: darkkhaki;
+    font-size: 16px;
 }
+
 
 /* end rulez*/
 
-
+.asterisk {
+    font-size: 40px;
+}
 
 
 /* start login form*/
@@ -15,19 +18,44 @@ body{
 .login {
     width: 300px;
     margin: 100px auto;
-
 }
-.login input{
+
+.login input {
     margin-bottom: 10px;
 }
-.login .form-control{
+
+.login .form-control {
     background-color: #e5e5e5;
 }
-.login .btn{
+
+.login .btn {
     background-color: chartreuse;
 }
-.login h3{
-     color: crimson;
+
+.login h3 {
+    color: crimson;
 }
 
+
 /* end login form*/
+
+
+/* START BOOTSTRAP EDITS */
+
+.navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover {
+    color: #fff;
+    background-color: #8e448e;
+}
+
+
+/* end BOOTSTRAP EDITS */
+
+.form-control {
+    position: relative;
+}

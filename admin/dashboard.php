@@ -2,6 +2,7 @@
       session_start();
      
      if(isset($_SESSION['Username'])){
+             $pageTitle = 'Dashboard';
              // echo 'welcome to '. $_SESSION['Username']  ;
              include 'init.php';
                echo 'salam';
