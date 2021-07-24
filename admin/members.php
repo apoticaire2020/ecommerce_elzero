@@ -7,9 +7,65 @@
 
              $do = isset($_GET['do']) ? $_GET['do'] : 'manage' ;
             if ($do=='manage') {
-            
+              echo "welcom to manage";
+              echo '<a href="members.php?do=Add"> add new members </a>';
 
             }
+            elseif ($do == 'Add') {?>
+              
+               <h1 class="text-center">add member</h1>
+
+               <div class="container">
+               <form class="form-horizontal" action ="?do=insert" method = "POST" >
+               
+                  <!-- start username field -->
+                     <div class="form-group form-group-lg">
+                           <label  class="col-sm-2 col-form-label">username</label>
+                           <div class="col-sm-10 col-md-4">
+                             
+                           <input type="text" class="form-control" name="username"   autocomplete='off' required="required"placeholder="username awsome"/>
+                         
+                        </div>
+                        </div>
+                  <!-- end username field -->  
+                  <!-- start username field -->
+                  <div class="form-group form-group-lg">
+                           <label  class="col-sm-2 col-form-label">password</label>
+                           <div class="col-sm-10 col-md-4">
+                              <input type="password" class="form-control" name="password" required="required" placeholder="pass must be strong"/>
+                           </div>
+                        </div>
+                  <!-- end username field -->  
+                  <!-- start email field -->
+                  <div class="form-group form-group-lg">
+                           <label  class="col-sm-2 col-form-label">email</label>
+                           <div class="col-sm-10 col-md-4">
+                              <input type="email" class="form-control" name="email"  required="required" placeholder="please email valid"/>
+                           </div>
+                        </div>
+                  <!-- end email field --> 
+                  <!-- start fullname field -->
+                  <div class="form-group form-group-lg">
+                           <label  class="col-sm-2 col-form-label">Full name</label>
+                           <div class="col-sm-10 col-md-4">
+                              <input type="text" class="form-control" name="full" placeholder=""/>
+                           </div>
+                        </div>
+                  <!-- end fullname field -->  
+                  <!-- start button field -->
+                  <div class="form-group form-group-lg">
+                        
+                           <div class="col-sm-offset-2 col-sm-10">
+                              <input type="submit" class="btn btn-primary btn-lg" value="add member"/>
+                           </div>
+                        </div>
+                  <!-- end button field -->   
+                        </form>
+               </div>
+           <?php }
+           elseif ($do =='insert') {
+             echo $_POST['username'] . $_POST['email']. $_POST['full'];
+           }
             elseif ($do=='Edit') {   
             $userid=  isset($_GET['userid'] )&& is_numeric($_GET['userid']) ? intval($_GET['userid']) : 0;
             $stm =$con->prepare("SELECT * from  users where  UserID=? LIMIT 1");
@@ -118,7 +174,7 @@
             
             }
             else
-            { echo 'sorry';
+            { //echo 'sorry';
             
             }
              echo "</div>" ;
